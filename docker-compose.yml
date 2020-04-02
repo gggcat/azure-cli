@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  azure-cli:
+    container_name: azure-cli
+    build:
+      context: .
+      dockerfile: azurecli.Dockerfile
+    tty: true
+    # Docker outside of Docker
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+    # 環境変数
+    environment:
+      AZ_USERNAME: ${AZ_USERNAME}
+      AZ_PASSWORD: ${AZ_PASSWORD}
+      AZ_LOCATION: japaneast
